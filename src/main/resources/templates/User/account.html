@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>oLLi - User Account</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="../../static/Style/accountStyle.css" th:href="@{/Style/accountStyle.css}" rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:8080" style="font-family:Lucida Console,serif">oLLi</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:8080">HOME</a></li>
+                <li><a th:href="@{/admin}">SERVICES</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1 style="font-family:Lucida Console,serif">oLLi</h1>
+    <p>Great time with Us</p>
+</div>
+
+<div class="row container-fluid text-center" style=" display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+    <div th:each="movie:${movies}">
+        <button onclick="" style="background: none; border: none">
+            <div class="col-sm-3" style="width:100%">
+                <div class="panel panel-default text-center" style="color: black;">
+                    <div class="panel-heading" style="background-color: darkred">
+                        <h2 style="color: white">Film</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <h5>Movie title</h5>
+                            <h4 id="movieTitle" th:text="${movie.title}"></h4>
+                        </div>
+                        <div>
+                            <h5>Release Year</h5>
+                            <h4 th:text="${movie.releaseYear}"></h4>
+                        </div>
+                        <div>
+                            <h5>Genre</h5>
+                            <h4 th:text="${movie.genre}"></h4>
+                        </div>
+                        <div>
+                            <h5>Director</h5>
+                            <h4 th:text="${movie.director}"></h4>
+                        </div>
+                        <div>
+                            <h5>Engagement:</h5>
+                            <h4 th:text="${movie.engagement}"></h4>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <h2>Synopsis</h2>
+                        <h4 style="color:#000;" th:text="${movie.synopsis}"></h4>
+                    </div>
+                </div>
+            </div>
+        </button>
+    </div>
+</div>
+</body>
+</html>

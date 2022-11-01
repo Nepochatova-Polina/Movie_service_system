@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>oLLi - Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link href="../../static/Style/loginStyle.css" th:href="@{/Style/loginStyle.css}" rel="stylesheet" type="text/css">
+    <!--    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">-->
+    <!--    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+
+</head>
+<body>
+
+<div class="contact-section" style="margin-top: 50px">
+    <div class="inner-width">
+        <form id="form" method="post" th:action="@{/registration}">
+            <h1>Get in touch with us</h1>
+            <div class="input-group">
+                <input type="text" class="message" placeholder="Your First Name" id="firstName" name="firstName"
+                       minlength="2"
+                       maxlength="32" required>
+            </div>
+            <div class="input-group">
+                <input type="text" class="message" placeholder="Your Last Name" id="lastName" name="lastName"
+                       minlength="2" maxlength="32"
+                       required>
+            </div>
+            <div class="input-group">
+                <input type="text" class="message" placeholder=" Create Your Nickname" id="nickname" name="nickname"
+                       minlength="2"
+                       maxlength="32" required>
+            </div>
+            <div class="input-group">
+                <input type="date" class="message" placeholder="Your Date of Birth" id="birthday" name="birthday"
+                       required>
+            </div>
+            <div class="input-group">
+                <input type="password" class="message" placeholder="Create Password" id="password" name="password"
+                       minlength="8"
+                       maxlength="32" required>
+            </div>
+            <div class="input-group">
+                <input type="password" class="message" placeholder="Confirm Password" id="password_confirmation"
+                       minlength="8" maxlength="32" required>
+            </div>
+            <button class="btn" type="submit">Register</button>
+        </form>
+        <p>Have an account?</p>
+        <a th:href="@{/authentication}">authentication</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>oLLi - Administrator Movie Statistic Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="../../static/Style/purchaseStatisticStyle.css" th:href="@{/Style/purchaseStatisticStyle.css}"
+          rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:8080" style="font-family:Lucid Console,serif">oLLi</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:8080">HOME</a></li>
+                <li><a th:href="@{/admin}">SERVICES</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1 style="font-family:Lucida Console,serif">oLLi</h1>
+    <p>Great time with Us</p>
+</div>
+<div class="container-fluid text-center">
+    <div class="tabs">
+        <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+        <label for="tab-btn-1">Date Statistic</label>
+        <input type="radio" name="tab-btn" id="tab-btn-2" value="">
+        <label for="tab-btn-2">Month Statistic</label>
+
+        <div id="content-1">
+            <div class="row" style="padding-bottom: 30px">
+                <form id="form" method="post" th:action="@{/admin/MovieStatistic}">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="firstDate">First Date:</label>
+                            <input
+                                    type="date"
+                                    name="firstDate"
+                                    id="firstDate"
+                                    data-date-format="DD/MM/YYYY"
+                                    required
+                                    class="form-control col">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="lastDate">Last Date:</label>
+                            <input
+                                    type="date"
+                                    data-date-format="DD/MM/YYYY"
+                                    name="lastDate"
+                                    id="lastDate"
+                                    placeholder="lastDate"
+                                    required
+                                    class="form-control col">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="submit" form="form" value="Submit" class="btn"
+                                style="color: #1F0F02;margin-top:32px">
+                            <span class="glyphicon glyphicon-search logo-small"> Search</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="col-sm-2">
+                    <h4>First date:</h4>
+                    <h5 th:text="${first_date}" style="text-underline: black"></h5>
+                </div>
+                <div class="col-sm-2">
+                    <h4>Last date:</h4>
+                    <h5 th:text="${last_date}" style="text-underline: black"></h5>
+                </div>
+            </div>
+            <table style="width:100%">
+                <tr class="text=center">
+                    <th>Id</th>
+                    <th>Data</th>
+                    <th>User first name</th>
+                    <th>User last name</th>
+                    <th>Title</th>
+                    <th>Price $</th>
+                </tr>
+
+                <tr th:each="purchase : ${purchases}">
+                    <td th:text="${purchase.id}"></td>
+                    <td th:text="${purchase.date}"></td>
+                    <td th:text="${purchase.user.firstName}"></td>
+                    <td th:text="${purchase.user.lastName}"></td>
+                    <td th:text="${purchase.movie.title}"></td>
+                    <td th:text="${purchase.movie.price}"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="content-2">
+            <div class="row" style="padding-bottom: 30px">
+                <form id="Month_form" method="post" th:action="@{/admin/MonthMovieStatistic}">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="month">Month and Year:</label>
+                            <input
+                                    type="month"
+                                    name="month"
+                                    id="month"
+                                    format="MM-YYYY"
+                                    required
+                                    class="form-control col">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="submit" form="Month_form" value="Submit" class="btn"
+                                style="color: #1F0F02;margin-top:32px">
+                            <span class="glyphicon glyphicon-search logo-small"> Search</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="col-sm-6">
+                    <h4>Month and Year:</h4>
+                    <h5 th:text="${Month_Year}" style="text-underline: black"></h5>
+                </div>
+            </div>
+            <table style="width:100%">
+                <tr class="text=center">
+                    <th>Id</th>
+                    <th>Data</th>
+                    <th>User first name</th>
+                    <th>User last name</th>
+                    <th>Title</th>
+                    <th>Price $</th>
+                </tr>
+
+                <tr th:each="purchase : ${purchases}">
+                    <td th:text="${purchase.id}"></td>
+                    <td th:text="${purchase.date}"></td>
+                    <td th:text="${purchase.user.firstName}"></td>
+                    <td th:text="${purchase.user.lastName}"></td>
+                    <td th:text="${purchase.movie.title}"></td>
+                    <td th:text="${purchase.movie.price}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+</html>

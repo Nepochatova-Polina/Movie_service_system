@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oLLi - Verify Purchase</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="../../static/Style/purchasePopup.css" th:href="@{/Style/purchasePopup.css}" rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<div id="fullscreen-container">
+    <div class="complaint-section">
+        <div class="inner-width">
+            <div class="row">
+                <div class="col-sm-11"></div>
+                <div class="col-sm-1">
+                    <button id="close-complaint" onclick="closeForm()"><span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </div>
+            <h3>Do You want to Verify Purchase?</h3>
+            <div th:each="movie:${movies}">
+                <form id="reservation-form" method="post" th:action="@{'createPurchase/{title}'(title=${movie.title})}">
+                    <div id="info">
+                        <h5>Movie title:</h5>
+                        <h4 th:text="${movie.title}"></h4>
+                    </div>
+                </form>
+                <button type="submit" id="submit-btn" class="button"> Yeah!</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

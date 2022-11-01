@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>oLLi - Update Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="../../static/Style/updateStyle.css" th:href="@{/Style/updateStyle.css}" rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:8080" style="font-family:Lucida Console,serif">oLLi</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:8080">HOME</a></li>
+                <li><a th:href="@{/admin}">SERVICES</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1 style="font-family:Lucida Console,serif">oLLi</h1>
+    <p>Great time with Us</p>
+</div>
+
+<div class="container-fluid text-center">
+    <h1>Update Movie Record</h1>
+    <br>
+    <form id="form" method="post" th:href="@{/updateMovie}">
+        <div class="form-group">
+            <label for="title">Movie Title:</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title">
+        </div>
+        <button type="submit" form="form" value="Submit" style="color: #1F0F02">Find</button>
+    </form>
+    <div class="row container-fluid text-center">
+        <div th:each="movie:${movies}">
+            <form id="reservation-form">
+                <div class="col-sm-6 col-sm-6">
+                    <div class="panel panel-default text-center" style="color: black">
+                        <div class="panel-heading" style="background-color: darkred">
+                            <h2 style="color: white">Film</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <h5>Movie title</h5>
+                                <h4 id="movieTitle" th:text="${movie.title}"></h4>
+                            </div>
+                            <div>
+                                <h5>Release Year</h5>
+                                <h4 th:text="${movie.releaseYear}"></h4>
+                            </div>
+                            <div>
+                                <h5>Genre</h5>
+                                <h4 th:text="${movie.genre}"></h4>
+                            </div>
+                            <div>
+                                <h5>Director</h5>
+                                <h4 th:text="${movie.director}"></h4>
+                            </div>
+                            <div>
+                                <h5>Engagement:</h5>
+                                <h4 th:text="${movie.engagement}"></h4>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <h2>Synopsis</h2>
+                            <h4 style="color:#000;" th:text="${movie.synopsis}"></h4>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group col-sm-6">
+                <label for="field">Select Field:</label>
+                <select class="form-control" id="field" name="field">
+                    <option>select</option>
+                    <option value="1">Title</option>
+                    <option value="2">Release Year</option>
+                    <option value="3">Genre</option>
+                    <option value="4">Director</option>
+                    <option value="5">Engagement</option>
+                    <option value="6">Synopsis</option>
+                </select>
+                <form class="input-field" id="field1" method="get" th:action="@{'updateTitle/{title}'(title=${movie.title})}">
+                    <label for="newTitle">New Movie Title:</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="newTitle"
+                            name="newTitle">
+                    <button type="submit" form="field1" value="Submit" style="color: black">Update
+                    </button>
+                </form>
+                <form class="input-field" id="field2" method="get" th:action="@{'updateYear/{title}'(title=${movie.title})}">
+                    <label for="newYear">New Release Year:</label>
+                    <input
+                            type="number"
+                            name="newYear"
+                            id="newYear"
+                            class="form-control"
+                            min="1500"
+                            max="2099"
+                            step="1"
+                            value="2022"/>
+                    <button type="submit" form="field2" value="Submit" style="color: black">Update
+                    </button>
+
+                </form>
+                <form class="input-field" id="field3"  method="get" th:action="@{'updateGenre/{title}'(title=${movie.title})}" >
+                    <label for="newGenre">Select New Genre(select one):</label>
+                    <select class="form-control" id="newGenre" name="newGenre">
+                        <option>select</option>
+                        <option>Action</option>
+                        <option>Adventure</option>
+                        <option>Drama</option>
+                        <option>Fantasy</option>
+                        <option>Historical</option>
+                        <option>Horror</option>
+                        <option>Thriller</option>
+                        <option>Noir</option>
+                        <option>Comedy</option>
+                    </select>
+                    <button type="submit" form="field3" value="Submit" style="color: black">Update
+                    </button>
+                </form>
+                <form class="input-field" id="field4" method="get" th:action="@{'updateDirector/{title}'(title=${movie.title})}">
+                    <label for="newDirector">New Movie Director:</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="newDirector"
+                            name="newDirector">
+                    <button type="submit" form="field4" value="Submit" style="color: black">Update
+                    </button>
+                </form>
+                <form class="input-field" id="field5" method="get" th:action="@{'updateEngagement/{title}'(title=${movie.title})}">
+                    <label for="newEngagement">Select New Engagement:</label>
+                    <select class="form-control" id="newEngagement" name="newEngagement">
+                        <option>Basic</option>
+                        <option>Standard</option>
+                        <option>Premium</option>
+                    </select>
+                    <button type="submit" form="field5" value="Submit" style="color: black">Update
+                    </button>
+                </form>
+                <form class="input-field" id="field6" method="get" th:action="@{'updateSynopsis/{title}'(title=${movie.title})}">
+                    <label for="newSynopsis">Synopsis:</label>
+                    <textarea
+                            class="form-control"
+                            rows="5"
+                            id="newSynopsis"
+                            name="newSynopsis"
+                    ></textarea>
+                    <button type="submit" form="field6" value="Submit" style="color: black">Update</button>
+                </form>
+            </div>
+            <div id="Log"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $('#field').change(function () {
+        $('.visible').removeClass('visible').addClass('input-field');
+        $('#field' + $(this).val() + '').removeClass('input-field').addClass('visible');
+    });
+</script>
+</html>

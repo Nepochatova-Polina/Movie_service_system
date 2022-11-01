@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>oLLi - Create Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="../../static/Style/createStyle.css" th:href="@{/Style/createStyle.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:8080" style="font-family:Lucida Console,serif">oLLi</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:8080">HOME</a></li>
+                <li><a th:href="@{/admin}">SERVICES</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1  style="font-family:Lucida Console,serif">oLLi</h1>
+    <p>Great time with Us</p>
+</div>
+
+<div class="container-fluid text-center">
+    <h1>Create New Movie Record</h1>
+    <br>
+    <form id="form" method="post" th:action="@{/createMovie}">
+        <div class="form-group">
+            <label for="title">Movie Title:</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title">
+        </div>
+
+        <div class="form-group">
+            <label for="director">Movie Director:</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="director"
+                    name="director">
+        </div>
+        <div class="form-group">
+            <label for="releaseYear">Release Year:</label>
+            <label>
+                <input
+                        type="number"
+                        name = "releaseYear"
+                        id="releaseYear"
+                        class="form-control"
+                       min="1500"
+                        max="2099"
+                        step="1"
+                        value="2022"/>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="genre">Select Genre(select one):</label>
+            <select class="form-control" id="genre" name="genre" >
+                <option>select</option>
+                <option>Action</option>
+                <option>Adventure</option>
+                <option>Drama</option>
+                <option>Fantasy</option>
+                <option>Historical</option>
+                <option>Horror</option>
+                <option>Thriller</option>
+                <option>Noir</option>
+                <option>Comedy</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="synopsis">Synopsis:</label>
+            <textarea
+                    class="form-control"
+                    rows="5"
+                    id="synopsis"
+                    name="synopsis"
+            ></textarea>
+        </div>
+        <div class="form-group">
+            <label for="engagement">Select Engagement:</label>
+            <select class="form-control" id="engagement" name="engagement">
+                <option>Basic</option>
+                <option>Standard</option>
+                <option>Premium</option>
+            </select>
+        </div>
+        <button type="submit" form="form" value="Submit" style="color: #1F0F02">Submit</button>
+    </form>
+</div>
+</body>
+</html>

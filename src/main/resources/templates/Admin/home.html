@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>oLLi - Administrator Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="../../static/Style/homeStyle.css" th:href="@{/Style/homeStyle.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:8080" style="font-family:Lucida Console,serif">oLLi</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:8080">HOME</a></li>
+                <li><a th:href="@{/admin}">SERVICES</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1  style="font-family:Lucida Console,serif">oLLi</h1>
+    <p>Great time with Us</p>
+</div>
+
+<div  class="container-fluid text-center bg-grey">
+    <h2>SERVICES</h2>
+    <h4>Choose your next step</h4>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <a th:href="@{/admin/createMovie}"><span class="glyphicon glyphicon-plus-sign logo-small"></span></a>
+            <h4>Create</h4>
+            <p>Add new Movie and open access</p>
+        </div>
+        <div class="col-sm-4">
+            <a th:href="@{/admin/updateMovie}"><span class="glyphicon glyphicon glyphicon-edit logo-small"></span></a>
+            <h4>Update</h4>
+            <p>Edit Movie info</p>
+        </div>
+        <div class="col-sm-4">
+            <a th:href="@{/admin/deleteMovie}"><span class="glyphicon glyphicon-remove-sign logo-small"></span></a>
+            <h4>Delete</h4>
+            <p>Delete all info about Movie</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <a th:href="@{/admin/MovieStatistic}"><span class="glyphicon glyphicon-align-left logo-small"></span></a>
+            <h4>Movie Statistic</h4>
+            <p>View the statistics of buy movies without tariff</p>
+        </div>
+        <div class="col-sm-4">
+            <a th:href="@{/admin/statistic}"><span class="glyphicon glyphicon glyphicon-info-sign logo-small"></span></a>
+            <h4>Payment Statistic</h4>
+            <p>View the statistics of the purchase tariffs</p>
+        </div>
+        <div class="col-sm-4">
+            <a href="#"><span class="glyphicon glyphicon-comment logo-small"></span></a>
+            <h4>Feedback</h4>
+            <p>Fast feedback and solution of your problem</p>
+        </div>
+    </div>
+    <br><br>
+</div>
+</body>
+</html>
