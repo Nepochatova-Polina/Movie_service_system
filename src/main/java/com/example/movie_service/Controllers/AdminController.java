@@ -120,6 +120,11 @@ public class AdminController {
     @PostMapping("/admin/statistic")
     public ModelAndView showStatistic(String firstDate, String lastDate, Map<String, Object> model) throws ParseException {
         List<Purchase> purchases = purchaseRepository.findAllByDateBetween(LocalDate.parse(firstDate),LocalDate.parse(lastDate));
+        double income = 0.0;
+        for (Purchase purchase : purchases) {
+            income += purchase.getEngagement().getPrice();
+        }
+        model.put("income",String.format("%.2f", income));
         model.put("purchases", purchases);
         model.put("first_date", firstDate);
         model.put("last_date", lastDate);
@@ -130,8 +135,27 @@ public class AdminController {
     public ModelAndView showMonthStatistic(String month, Map<String, Object> model) {
         String date = month.replace("-","");
         List<Purchase> purchases = purchaseRepository.findAllByMonthAndYear(date);
+        double income = 0.0;
+        for (Purchase purchase : purchases) {
+            income += purchase.getEngagement().getPrice();
+        }
+        model.put("income", String.format("%.2f", income));
         model.put("purchases", purchases);
         model.put("Month_Year", month);
+        modelAndView.setViewName("Admin/purchaseStatistic.html");
+        return modelAndView;
+    }
+    @PostMapping("/admin/BeforeMonthStatistic")
+    public ModelAndView showBeforeMonthStatistic(String before_month, Map<String, Object> model) {
+        String date = before_month.replace("-","");
+        List<Purchase> purchases = purchaseRepository.findAllBeforeMonthAndYear(date);
+        double income = 0.0;
+        for (Purchase purchase : purchases) {
+            income += purchase.getEngagement().getPrice();
+        }
+        model.put("income", String.format("%.2f", income));
+        model.put("purchases", purchases);
+        model.put("Month_Year", before_month);
         modelAndView.setViewName("Admin/purchaseStatistic.html");
         return modelAndView;
     }
@@ -147,6 +171,11 @@ public class AdminController {
     @PostMapping("/admin/MovieStatistic")
     public ModelAndView showMovieStatistic(String firstDate, String lastDate, Map<String, Object> model) throws ParseException {
         List<MoviePurchase> purchases = moviePurchaseRepository.findAllByDateBetween(LocalDate.parse(firstDate),LocalDate.parse(lastDate));
+        double income = 0.0;
+        for (MoviePurchase purchase : purchases) {
+            income += purchase.getMovie().getPrice();
+        }
+        model.put("income", String.format("%.2f", income));
         model.put("purchases", purchases);
         model.put("first_date", firstDate);
         model.put("last_date", lastDate);
@@ -158,8 +187,27 @@ public class AdminController {
     public ModelAndView showMonthMovieStatistic(String month, Map<String, Object> model) {
         String date = month.replace("-","");
         List<MoviePurchase> purchases = moviePurchaseRepository.findAllByMonthAndYear(date);
+        double income = 0;
+        for (MoviePurchase purchase : purchases) {
+            income += purchase.getMovie().getPrice();
+        }
+        model.put("income", String.format("%.2f", income));
         model.put("purchases", purchases);
         model.put("Month_Year", month);
+        modelAndView.setViewName("Admin/MoviePurchaseStatistic.html");
+        return modelAndView;
+    }
+    @PostMapping("/admin/BeforeMonthMovieStatistic")
+    public ModelAndView showMBeforeonthMovieStatistic(String before_month, Map<String, Object> model) {
+        String date = before_month.replace("-","");
+        List<MoviePurchase> purchases = moviePurchaseRepository.findAllBeforeMonthAndYear(date);
+        double income = 0;
+        for (MoviePurchase purchase : purchases) {
+            income += purchase.getMovie().getPrice();
+        }
+        model.put("income", String.format("%.2f", income));
+        model.put("purchases", purchases);
+        model.put("Month_Year", before_month);
         modelAndView.setViewName("Admin/MoviePurchaseStatistic.html");
         return modelAndView;
     }

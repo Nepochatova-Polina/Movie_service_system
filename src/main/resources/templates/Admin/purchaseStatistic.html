@@ -40,6 +40,8 @@
         <label for="tab-btn-1">Date Statistic</label>
         <input type="radio" name="tab-btn" id="tab-btn-2" value="">
         <label for="tab-btn-2">Month Statistic</label>
+        <input type="radio" name="tab-btn" id="tab-btn-3" value="">
+        <label for="tab-btn-3">Before Month Statistic</label>
 
         <div id="content-1">
             <div class="row" style="padding-bottom: 30px">
@@ -83,6 +85,10 @@
                 <div class="col-sm-2">
                     <h4>Last date:</h4>
                     <h5 th:text="${last_date}" style="text-underline: black"></h5>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Income:</h4>
+                    <h5 th:text="${income}" style="text-underline: black"></h5>
                 </div>
             </div>
             <table style="width:100%">
@@ -130,6 +136,61 @@
                 <div class="col-sm-6">
                     <h4>Month and Year:</h4>
                     <h5 th:text="${Month_Year}" style="text-underline: black"></h5>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Income:</h4>
+                    <h5 th:text="${income}" style="text-underline: black"></h5>
+                </div>
+            </div>
+            <table style="width:100%">
+                <tr class="text=center">
+                    <th>Id</th>
+                    <th>Data</th>
+                    <th>User first name</th>
+                    <th>User last name</th>
+                    <th>Engagement</th>
+                    <th>Price $</th>
+                </tr>
+
+                <tr th:each="purchase : ${purchases}">
+                    <td th:text="${purchase.id}"></td>
+                    <td th:text="${purchase.date}"></td>
+                    <td th:text="${purchase.users.firstName}"></td>
+                    <td th:text="${purchase.users.lastName}"></td>
+                    <td th:text="${purchase.engagement.engagement}"></td>
+                    <td th:text="${purchase.engagement.price}"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="content-3">
+            <div class="row" style="padding-bottom: 30px">
+                <form id="before_month_form" method="post" th:action="@{/admin/BeforeMonthStatistic}">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="month">Month and Year:</label>
+                            <input
+                                    type="month"
+                                    name="before_month"
+                                    id="before_month"
+                                    format="MM-YYYY"
+                                    required
+                                    class="form-control col">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="submit" form="before_month_form" value="Submit" class="btn"
+                                style="color: #1F0F02;margin-top:32px">
+                            <span class="glyphicon glyphicon-search logo-small"> Search</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="col-sm-6">
+                    <h4>Month and Year:</h4>
+                    <h5 th:text="${Month_Year}" style="text-underline: black"></h5>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Income:</h4>
+                    <h5 th:text="${income}" style="text-underline: black"></h5>
                 </div>
             </div>
             <table style="width:100%">

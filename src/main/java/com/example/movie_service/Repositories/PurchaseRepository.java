@@ -23,4 +23,12 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
              where to_char(purchase.date, 'YYYYMM') = ?;
                          """, nativeQuery = true)
     List<Purchase> findAllByMonthAndYear(String date);
+
+    @Transactional
+    @Modifying
+    @Query(value = """
+            select * from purchase
+             where to_char(purchase.date, 'YYYYMM') <= ?;
+                         """, nativeQuery = true)
+    List<Purchase> findAllBeforeMonthAndYear(String date);
 }

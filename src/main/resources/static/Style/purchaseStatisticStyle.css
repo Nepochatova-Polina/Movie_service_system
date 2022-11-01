@@ -95,28 +95,30 @@ table, th, td {
     border: 2px solid #deb18c;
     color: white;
 }
+
 .tabs {
     justify-content: flex-end;
     align-items: flex-end;
     font-size: 0;
 }
 
-.tabs>input[type="radio"] {
+.tabs > input[type="radio"] {
     display: none;
 }
 
-.tabs>div {
+.tabs > div {
     display: none;
     padding: 10px 20px;
     font-size: 16px;
 }
 
-#tab-btn-1:checked~#content-1,
-#tab-btn-2:checked~#content-2{
+#tab-btn-1:checked ~ #content-1,
+#tab-btn-2:checked ~ #content-2,
+#tab-btn-3:checked ~ #content-3 {
     display: block;
 }
 
-.tabs>label {
+.tabs > label {
     display: inline-flex;
     text-align: left;
     user-select: none;
@@ -131,11 +133,11 @@ table, th, td {
     top: 1px;
 }
 
-.tabs>label:not(:first-of-type) {
+.tabs > label:not(:first-of-type) {
     border-left: none;
 }
 
-.tabs>input[type="radio"]:checked+label {
+.tabs > input[type="radio"]:checked + label {
     background-color: #700617;
     border: 1px solid #020000;
 }
@@ -161,16 +163,19 @@ table, th, td {
         -webkit-transform: translateY(0%);
     }
 }
+
 @media screen and (max-width: 768px) {
     .col-sm-4 {
         text-align: center;
         margin: 25px 0;
     }
+
     .btn-lg {
         width: 100%;
         margin-bottom: 35px;
     }
 }
+
 @media screen and (max-width: 480px) {
     .logo {
         font-size: 150px;
